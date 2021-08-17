@@ -9,4 +9,4 @@ const Book = new mongoose.Schema({
   email: { type: String, unique: true, dropDups: true },
 });
 
-module.exports = Book;
+module.exports = mongoose.model("Book", Book);

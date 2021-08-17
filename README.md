@@ -34,3 +34,15 @@ Start time: 15:20
 Finish time: 20:11
 
 Actual time needed to complete: 5 Hours
+
+---
+
+Name of feature: CRUD
+
+Estimate of time needed to complete: 3 Hours
+
+Start time: 14:15
+
+Finish time: 16:45
+
+Actual time needed to complete: 2 Hours and 30 minutes
