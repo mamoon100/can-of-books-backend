@@ -92,15 +92,40 @@ const deleteBook = (req, res) => {
         });
       }
     });
-    // .then(() => {
-    //   BookModel.find({}, (error, items) => {
-    //     if (error) {
-    //       res.status(500).send("there is an error from the server");
-    //     }
-    //     res.status(201).send(items);
-    //   });
-    // });
   });
 };
 
-module.exports = { BookFunction, createBook, deleteBook };
+const updateBook = (req, res) => {
+  const client = jwksClient({
+    jwksUri: ` https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
+  });
+  const getKey = (header, callback) => {
+    client.getSigningKey(header.kid, function (err, key) {
+      // @ts-ignore
+      const signingKey = key.publicKey || key.rsaPublicKey;
+      callback(null, signingKey);
+    });
+  };
+  const token = req.headers.authorization.split(" ")[1];
+  jwt.verify(token, getKey, {}, (err, user) => {
+    if (err) {
+      res.status(500).send("invalid token");
+    } else {
+      BookModel.findByIdAndUpdate(req.params.id, req.body, (error, item) => {
+        if (error) {
+          res.status(404).send("there eas a problem");
+        } else {
+          BookModel.find({}, (errs, item) => {
+            if (errs) {
+              res.status(500).send("there was problem with server");
+            } else {
+              res.status(201).send(item);
+            }
+          });
+        }
+      });
+    }
+  });
+};
+
+module.exports = { BookFunction, createBook, deleteBook, updateBook };

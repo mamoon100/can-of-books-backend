@@ -46,3 +46,15 @@ Start time: 14:15
 Finish time: 16:45
 
 Actual time needed to complete: 2 Hours and 30 minutes
+
+---
+
+Name of feature: update
+
+Estimate of time needed to complete: 2 Hours
+
+Start time: 15:00
+
+Finish time: 16:15
+
+Actual time needed to complete: 1 Hour and 15 minutes
