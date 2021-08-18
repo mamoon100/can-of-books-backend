@@ -6,6 +6,7 @@ const {
   BookFunction,
   createBook,
   deleteBook,
+  updateBook,
 } = require("./controllers/Book.controller");
 const mongoose = require("mongoose");
 const app = express();
@@ -19,6 +20,7 @@ app.use(cors());
 app.get("/book", BookFunction);
 app.post("/book", createBook);
 app.delete("/book/:id", deleteBook);
+app.put("/book/:id", updateBook);
 
 app.get("/", (req, res) => res.status(201).send("welcome"));
 
